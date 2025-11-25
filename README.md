@@ -1,93 +1,82 @@
-# Système de Gestion d'Utilisateurs (PHP Procédural)
+Système de Gestion d'Utilisateurs (PHP Procédural)
+Ce dépôt contient le code source de mon projet de développement web. Il s'agit d'une application de gestion de membres réalisée en PHP procédural, sans utiliser de framework ni de Programmation Orientée Objet (POO).
 
-Ce projet est une application web complète de gestion d'utilisateurs réalisée en **PHP Procédural** (sans Programmation Orientée Objet). Il a été développé dans le cadre d'un exercice pédagogique visant à maîtriser les interactions avec une base de données MySQL via PDO, la gestion des sessions et la sécurisation des données.
+L'objectif de ce travail était de mettre en pratique les fondamentaux du langage PHP : la gestion des sessions, la sécurité des formulaires et les interactions avec une base de données MySQL via PDO.
 
-## 📋 Fonctionnalités
+Fonctionnalités du projet
+Le site est divisé en deux parties selon le rôle de l'utilisateur :
 
-Le projet respecte un cahier des charges strict incluant :
+1. Partie Utilisateur (Publique)
+Inscription : Le formulaire vérifie que l'email est unique, que les mots de passe correspondent et qu'ils respectent une complexité minimale (8 caractères, majuscule, chiffre, caractère spécial).
 
-### 👤 Partie Utilisateur
-* **Inscription sécurisée :**
-    * Hachage des mots de passe (`password_hash`).
-    * Vérification par Regex (8 caractères, majuscule, chiffre, caractères spéciaux).
-    * Vérification d'unicité de l'email.
-    * Confirmation du mot de passe.
-* **Connexion / Déconnexion :** Gestion des sessions PHP.
-* **Espace Membre :**
-    * Affichage des informations personnelles.
-    * Possibilité de supprimer son propre compte.
+Connexion : Système d'authentification sécurisé via sessions PHP.
 
-### 👑 Partie Administrateur (Back-office)
-* Accessible uniquement aux utilisateurs ayant le rôle **Admin**.
-* **Tableau de bord :** Liste complète des inscrits avec leur rôle.
-* **Gestion (CRUD) :**
-    * Ajouter un utilisateur.
-    * Modifier un profil (Nom, Email, et Rôle).
-    * Supprimer un utilisateur.
-* **Sécurité :** Protection contre l'auto-rétrogradation (un admin ne peut pas se retirer ses propres droits).
+Gestion de compte : L'utilisateur peut consulter ses informations et supprimer son compte définitivement.
 
-## 🛠️ Stack Technique
+2. Partie Administrateur (Privée)
+Accessible uniquement aux utilisateurs ayant le rôle "Admin".
 
-* **Langage :** PHP 8 (Procédural).
-* **Base de données :** MySQL.
-* **Interface :** PDO avec requêtes préparées (Prepared Statements) pour éviter les injections SQL.
-* **Frontend :** HTML5 / CSS3 (Simple et fonctionnel).
+Tableau de bord : Vue d'ensemble de tous les utilisateurs inscrits.
 
-## 🚀 Installation et Configuration
+Ajout de membre : Possibilité de créer un compte manuellement.
 
-Pour tester le projet localement :
+Modification : L'administrateur peut modifier le nom, l'email et surtout le rôle (passer un membre en admin et inversement).
 
-1.  **Cloner le dépôt :**
-    ```bash
-    git clone [https://github.com/TON_PSEUDO/TON_REPO.git](https://github.com/TON_PSEUDO/TON_REPO.git)
-    ```
+Suppression : Suppression de n'importe quel compte utilisateur.
 
-2.  **Configuration de la Base de Données :**
-    Ouvrez votre gestionnaire SQL (phpMyAdmin, HeidiSQL...) et exécutez les commandes suivantes pour créer la structure :
+Sécurité : Une protection empêche l'administrateur de se retirer ses propres droits accidentellement.
 
-    ```sql
-    CREATE DATABASE gestion_users;
-    USE gestion_users;
+Choix Techniques
+Langage : PHP 8 (structure procédurale).
 
-    -- Création de la table des rôles
-    CREATE TABLE roles (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        name VARCHAR(50) NOT NULL
-    );
+Base de données : MySQL.
 
-    -- Insertion des rôles par défaut
-    INSERT INTO roles (name) VALUES ('user'), ('admin');
+Sécurité BDD : Utilisation exclusive de PDO et des requêtes préparées (Prepared Statements) pour empêcher les injections SQL.
 
-    -- Création de la table utilisateurs
-    CREATE TABLE users (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        nom VARCHAR(255) NOT NULL,
-        email VARCHAR(255) NOT NULL UNIQUE,
-        adresse VARCHAR(255) NOT NULL,
-        password VARCHAR(255) NOT NULL,
-        role_id INT DEFAULT 1,
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        CONSTRAINT fk_users_roles FOREIGN KEY (role_id) REFERENCES roles(id)
-    );
-    ```
+Sécurité des données : Les mots de passe sont hachés avec password_hash() et les affichages sont protégés contre les failles XSS avec htmlspecialchars().
 
-3.  **Configuration PHP :**
-    Vérifiez le fichier `fonctions.php` pour vous assurer que les identifiants de connexion à la base de données correspondent aux vôtres (root / "" par défaut sur Laragon/XAMPP).
+Installation locale
+Pour tester le projet sur votre machine, voici les étapes à suivre :
 
-## 🔑 Compte de Démonstration
+1. Récupération des fichiers Clonez ce dépôt ou téléchargez les fichiers dans le dossier de votre serveur local (ex: www pour Laragon/Wamp ou htdocs pour XAMPP).
 
-Pour tester l'interface administrateur, vous pouvez créer un compte via l'inscription, puis modifier manuellement son `role_id` à **2** dans la base de données, ou utiliser les identifiants suivants (si créés) :
+2. Création de la Base de Données Ouvrez votre gestionnaire SQL (phpMyAdmin ou autre) et exécutez le script SQL suivant pour créer la base et les tables nécessaires :
 
-* **Email :** admin@test.com
-* **Mot de passe :** Admin123!
+SQL
 
-## 🛡️ Sécurité
+CREATE DATABASE gestion_users;
+USE gestion_users;
 
-Le projet met un point d'honneur sur la sécurité :
-* Utilisation systématique de `htmlspecialchars()` contre les failles XSS.
-* Utilisation de `prepare()` et `execute()` contre les injections SQL.
-* Validation des données entrantes (`trim`, `filter_var`, Regex).
-* Contrôle strict des sessions (`requireLogin`, `requireAdmin`).
+-- Table des rôles (Admin / User)
+CREATE TABLE roles (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50) NOT NULL
+);
 
----
-*Projet réalisé par Timéo Girard*
+INSERT INTO roles (name) VALUES ('user'), ('admin');
+
+-- Table des utilisateurs
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nom VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    adresse VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    role_id INT DEFAULT 1,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk_users_roles FOREIGN KEY (role_id) REFERENCES roles(id)
+);
+3. Configuration Vérifiez le fichier fonctions.php à la racine. Il contient la fonction de connexion à la base de données. Par défaut, elle est configurée pour un environnement local standard (Utilisateur : root, Mot de passe : vide). Modifiez ces valeurs si nécessaire.
+
+Accéder à l'interface Admin
+Lors d'une inscription classique, l'utilisateur reçoit par défaut le rôle "User". Pour tester les fonctionnalités administrateur :
+
+Inscrivez-vous sur le site via le formulaire.
+
+Allez dans votre base de données (table users).
+
+Modifiez la colonne role_id de votre utilisateur et mettez la valeur 2 (au lieu de 1).
+
+Déconnectez-vous et reconnectez-vous sur le site : le menu administrateur sera désormais visible.
+
+Projet réalisé par Timéo Girard
