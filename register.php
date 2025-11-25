@@ -19,10 +19,16 @@ if ($_SERVER['REQUEST_METHOD']==='POST'){
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
     die ("Email invalide.");
     }
-
+    
     if ($password !== $confirmation){
     die ("Veuillez saisir les même mot de passe !");
     }
+
+    // ajout regex 
+if (!preg_match('/^(?=.*[A-Z])(?=.*\d).{8,}$/', $password)) {
+    die("Le mot de passe doit contenir 8 caractères, 1 majuscule et 1 chiffre.");
+}
+
 
     if (emailExiste ($pdo, $email)){
     die ("Cet email existe déjà.");
