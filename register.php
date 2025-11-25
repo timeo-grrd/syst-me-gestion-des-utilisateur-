@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD']==='POST'){
     die ("Veuillez saisir les même mot de passe !");
     }
 
-    if (emailExist ($pdo, $email)){
+    if (emailExiste ($pdo, $email)){
     die ("Cet email existe déjà.");
     }
 
