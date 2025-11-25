@@ -30,6 +30,7 @@ $users = getAllUsers($pdo);
                 <th>Nom</th>
                 <th>Email</th>
                 <th>Rôle</th>
+                <th>Action</th> </tr>
                 </thead>
         <tbody>
             <?php foreach ($users as $user): ?>
