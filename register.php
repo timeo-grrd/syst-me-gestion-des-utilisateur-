@@ -65,8 +65,8 @@ if ($_SERVER['REQUEST_METHOD']==='POST'){
             </div>
             
             <div class="field">
-                <label for="motdepasse">Mot de passe</label>
-                <input id="motdepasse" type="password" name="motdepasse" required >
+                <label for="password">Mot de passe</label>
+                <input id="password" type="password" name="password" required >
             </div>
             
             <div class="field">
