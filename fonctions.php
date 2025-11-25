@@ -46,16 +46,22 @@ function getUserByEmail ($pdo, $email){
 
 // Vérifier si un utilisateur est connecté 
 function isLogged(){
+    return isset($_SESSION['user_id']);
+}
+
+// Bloquer une page si non connecté
+function requireLogin(){
     if (!isLogged()){
         header("Location: login.php");
         exit;
     }
 }
 
+
 function deleteAccount ($pdo, $id){
     $stmt = $pdo->prepare("DELETE FROM users WHERE id =?");
     $stmt->execute([$id]);
-    
+
 }
 
 

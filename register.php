@@ -28,10 +28,10 @@ if ($_SERVER['REQUEST_METHOD']==='POST'){
     die ("Cet email existe déjà.");
     }
 
-    $passwordHash = password_hash ($password, PASSWORD_DEFAULT);
+    $passwordHash = password_hash($password, PASSWORD_DEFAULT);
 
 
-    if (creerUtilisateur ($pdo, $nom, $email, $adresse, $passwordHash)){
+    if (creerUtilisateur ($pdo, $nom, $email, $passwordHash, $adresse)){
     echo "Félicitation vous êtes inscrit. <a href='login.php'>Se connecter</a>";
     } else{
     echo "Erreur lors de l'inscription, veuillez réssayer";

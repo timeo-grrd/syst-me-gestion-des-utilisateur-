@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] ==='POST'){
         die ("Veuillez remplir tous les champs");
     }
 
-    $user = getUserByEmail ($pdo, $email);
+    $user = getUserByEmail($pdo, $email);
 
     if (!$user){
         die ("Email ou mot de passe incorect.");
