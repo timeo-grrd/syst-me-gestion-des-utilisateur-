@@ -23,6 +23,11 @@ $users = getAllUsers($pdo);
         <a href="logout.php">Déconnexion</a>
     </nav>
 <h1>Gestion des utilisateurs</h1>
+<div style="margin-bottom: 20px;">
+    <a href="register.php" style="background-color: green; color: white; padding: 10px; text-decoration: none;">
+        + Ajouter un utilisateur
+    </a>
+</div>
     <table border="1">
         <thead>
             <tr>
