@@ -37,12 +37,30 @@ function creerUtilisateur ($pdo, $nom, $email, $passwordHash, $adresse){
     return $stmt ->execute ([$nom, $email, $passwordHash, $adresse]);
 }
 
-// Récupérer un utilisateur par email 
+// Récupérer un utilisateur par email ainsi que son role
+
 function getUserByEmail ($pdo, $email){
-    $stmt = $pdo-> prepare ("SELECT * FROM users WHERE email = ?");
+    $sql = "SELECT users.*, roles.name as role_name FROM users JOIN roles ON users.role_id = roles.id WHERE email = ?";
+    $stmt = $pdo-> prepare ($sql);
     $stmt -> execute ([$email]);
     return $stmt -> fetch ();
 }
+
+function getAllUsers($pdo){
+    $sql = "SELECT users.*, roles.name as role_name FROM users JOIN roles ON users.role_id = roles.id ORDER BY users.id DESC";
+    $stmt = $pdo -> query($sql);
+    return $stmt ->fetchAll();
+}
+
+function requireAdmin(){
+    if (!isLogged() || $_SESSION['user_role'] !== 'admin'){
+        header("Location: tableau.php");
+        exit;
+    }
+}
+
+
+
 
 // Vérifier si un utilisateur est connecté 
 function isLogged(){

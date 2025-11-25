@@ -25,7 +25,18 @@ if ($_SERVER['REQUEST_METHOD'] ==='POST'){
     $_SESSION['user_id'] = $user ['id'];
     $_SESSION['user_nom'] = $user ['nom'];
 
+    // on ajoute le roles user ou admin 
+    $_SESSION['user_role'] = $user['role_name'];
     header("Location: tableau.php");
+
+
+    // quand un admin se connecte on le redirige sur une interface diférente 
+
+    if ($_SESSION['user_role']==='admin'){
+        header("Location: admin.php");
+    }else{
+        header("Location: tableau.php");
+    }
     exit;
 }
 ?>
