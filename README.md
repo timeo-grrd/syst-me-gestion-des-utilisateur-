@@ -1,5 +1,5 @@
-Système de Gestion d'Utilisateurs (PHP Procédural)
-Ce dépôt contient le code source de mon projet de développement web. Il s'agit d'une application de gestion de membres réalisée en PHP procédural, sans utiliser de framework ni de Programmation Orientée Objet (POO).
+Système de Gestion d'Utilisateurs
+Ce dépôt contient le code source de mon projet . Il s'agit d'une application de gestion de membres réalisée en PHP procédural, sans utiliser de framework ni de Programmation Orientée Objet (POO).
 
 L'objectif de ce travail était de mettre en pratique les fondamentaux du langage PHP : la gestion des sessions, la sécurité des formulaires et les interactions avec une base de données MySQL via PDO.
 
@@ -7,20 +7,15 @@ Fonctionnalités du projet
 Le site est divisé en deux parties selon le rôle de l'utilisateur :
 
 1. Partie Utilisateur (Publique)
-Inscription : Le formulaire vérifie que l'email est unique, que les mots de passe correspondent et qu'ils respectent une complexité minimale (8 caractères, majuscule, chiffre, caractère spécial).
-
-Connexion : Système d'authentification sécurisé via sessions PHP.
-
-Gestion de compte : L'utilisateur peut consulter ses informations et supprimer son compte définitivement.
+   Inscription : Le formulaire vérifie que l'email est unique, que les mots de passe correspondent et qu'ils respectent une complexité minimale le regex (8 caractères, majuscule, chiffre, caractère spécial).
+   Un utilisateur peut consulter ses informations et supprimer son compte définitivement.
 
 2. Partie Administrateur (Privée)
-Accessible uniquement aux utilisateurs ayant le rôle "Admin".
+   Accessible uniquement aux utilisateurs ayant le rôle "Admin".
 
 Tableau de bord : Vue d'ensemble de tous les utilisateurs inscrits.
-
 Ajout de membre : Possibilité de créer un compte manuellement.
-
-Modification : L'administrateur peut modifier le nom, l'email et surtout le rôle (passer un membre en admin et inversement).
+Modification : Possibilité de modifier le nom, l'email et surtout le rôle (passer un membre en admin et inversement).
 
 Suppression : Suppression de n'importe quel compte utilisateur.
 
@@ -49,24 +44,23 @@ USE gestion_users;
 
 -- Table des rôles (Admin / User)
 CREATE TABLE roles (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(50) NOT NULL
+id INT AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(50) NOT NULL
 );
 
 INSERT INTO roles (name) VALUES ('user'), ('admin');
 
 -- Table des utilisateurs
 CREATE TABLE users (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    nom VARCHAR(255) NOT NULL,
-    email VARCHAR(255) NOT NULL UNIQUE,
-    adresse VARCHAR(255) NOT NULL,
-    password VARCHAR(255) NOT NULL,
-    role_id INT DEFAULT 1,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    CONSTRAINT fk_users_roles FOREIGN KEY (role_id) REFERENCES roles(id)
-);
-3. Configuration Vérifiez le fichier fonctions.php à la racine. Il contient la fonction de connexion à la base de données. Par défaut, elle est configurée pour un environnement local standard (Utilisateur : root, Mot de passe : vide). Modifiez ces valeurs si nécessaire.
+id INT AUTO_INCREMENT PRIMARY KEY,
+nom VARCHAR(255) NOT NULL,
+email VARCHAR(255) NOT NULL UNIQUE,
+adresse VARCHAR(255) NOT NULL,
+password VARCHAR(255) NOT NULL,
+role_id INT DEFAULT 1,
+created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+CONSTRAINT fk_users_roles FOREIGN KEY (role_id) REFERENCES roles(id)
+); 3. Configuration Vérifiez le fichier fonctions.php à la racine. Il contient la fonction de connexion à la base de données. Par défaut, elle est configurée pour un environnement local standard (Utilisateur : root, Mot de passe : vide). Modifiez ces valeurs si nécessaire.
 
 Accéder à l'interface Admin
 Lors d'une inscription classique, l'utilisateur reçoit par défaut le rôle "User". Pour tester les fonctionnalités administrateur :
