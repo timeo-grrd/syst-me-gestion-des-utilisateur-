@@ -16,13 +16,8 @@ Le site est divisé en deux parties selon le rôle de l'utilisateur :
 Tableau de bord : Vue d'ensemble de tous les utilisateurs inscrits.
 Ajout de membre : Possibilité de créer un compte manuellement.
 Modification : Possibilité de modifier le nom, l'email et surtout le rôle (passer un membre en admin et inversement).
-
-Suppression : Suppression de n'importe quel compte utilisateur.
-
+Suppression : Suppression du compte n'importe quel compte utilisateur.
 Sécurité : Une protection empêche l'administrateur de se retirer ses propres droits accidentellement.
-
-Choix Techniques
-Langage : PHP 8 (structure procédurale).
 
 Base de données : MySQL.
 

@@ -52,10 +52,15 @@ if (!preg_match('/^(?=.*[A-Z])(?=.*\d).{8,}$/', $password)) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inscription site </title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Kedebideri:wght@400;500;600;700;800;900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
     <main>
         <form method="POST">
+            <h1 class="bvn">Créer un compte</h1>
             <div class="field">
                 <label for="nom">Nom</label>
                 <input id="nom" type="text" name="nom" required>
@@ -81,7 +86,10 @@ if (!preg_match('/^(?=.*[A-Z])(?=.*\d).{8,}$/', $password)) {
             </div>
 
             <div class="actions">
-                <button class="bouton" type="submit">S'inscrire</button>
+                <button class="bouton"type="submit">S'inscrire</button>
+                <div class="login-link">
+                <a href="login.php">Se connecter
+                </div>
             </div>
             
 

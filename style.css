@@ -1,0 +1,124 @@
+:root{
+    --fond-page:#0f172a;
+    --fond-bloc:#1e293b;
+    --text-principal:#f8fafc;
+    --text-secondaire:#94a3b8;
+    --danger:#ef4444;
+    --succès:#10b981;
+    
+}
+
+
+/* mise en forme pour l'index  */
+
+body{
+    background-color:  #0f172a;
+    color: var(--text-principal);
+    font-family: "Inter", sans-serif;
+    a:hover {
+    color: var(--text-principal);
+}
+
+nav li  a {
+    text-decoration: none ;
+    color: var(--text-secondaire);
+}
+    
+}
+.bvn {
+    text-align: center;
+    font-size: 5rem;
+    color: var(--text-principal);
+}
+
+.navigation {  display: flex;
+    gap:30px;
+    justify-content: center;
+    list-style: none;
+    font-size: 50px;
+    font-family: "Inter", sans-serif;
+    color: var(--text-secondaire);
+    text-decoration: none;
+    :hover {
+    color: var(--text-principal);   
+}
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+    max-width: 750px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: px;
+}
+
+.field label {
+    font-weight: 600;
+    letter-spacing: 0.01em;
+}
+
+.field input {
+    padding: 12px 14px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.16);
+    background: rgba(255,255,255,0.04);
+    color: var(--text);
+    outline: none;
+    transition: all 0.18s ease;
+    font-size: 15px;
+}
+
+.field input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 0px rgba(168,85,247,0.2);
+    
+}
+
+.login-link {
+    margin-top: 40px;
+    text-align: right;
+    max-width: 350px; 
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: right;
+    font-size: 30px;   
+}
+.login-link a{
+    text-decoration: none;
+    color: var(--text-secondaire);
+}
+
+.login-link a:hover{
+    color: var(--text-principal);
+}
+
+.actions{
+    display: flex;
+    justify-content: flex-start;
+    max-width: 350px;
+    width: 100%;
+    margin: 20px   auto;
+}
+
+.bouton {
+    background:var(--text-secondaire);
+    color: var(--text-principal);
+    padding: 12px 30px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: "Inter", sans-serif;
+    font-weight: bold;
+    font-size: 1.25rem;
+    transition: all 0.3s ease; 
+}
+
+.bouton:hover {
+    box-shadow: 0 0 15px var(--neon-glow);
+    transform: translateY(-2px);
+}

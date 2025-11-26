@@ -14,13 +14,50 @@ if ($_SERVER['REQUEST_METHOD'] ==='POST'){
 
     $user = getUserByEmail($pdo, $email);
 
-    if (!$user){
-        die ("Email ou mot de passe incorect.");
-    }
+// Dans login.php :
 
-    if (!password_verify($password, $user ['password'])){
-        die("Email ou mot de passe incorrect.");
-    }
+// Si l'utilisateur n'existe pas OU si le mot de passe est faux
+if (!$user || !password_verify($password, $user['password'])){
+    
+    // On ferme le PHP pour envoyer du HTML pur
+    ?>
+    <!DOCTYPE html>
+    <html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <title>Accès Refusé</title>
+        <link rel="stylesheet" href="style.css">
+        <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+    </head>
+    <body style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh; text-align: center;">
+        
+        <div style="max-width: 600px; padding: 20px;">
+            
+            <h1 style="color: var(--danger); font-size: 3rem; margin-bottom: 10px; text-shadow: 0 0 20px var(--danger);">
+                🚫 ACCÈS REFUSÉ
+            </h1>
+            
+            <p style="font-size: 1.2rem; color: var(--text-muted); margin-bottom: 30px;">
+                Email ou mot de passe incorrect.
+            </p>
+
+            <img src="https://media1.tenor.com/m/S5EKaLCuwI8AAAAd/fbi-cat.gif" 
+                 alt="Troll" 
+                 style="border-radius: 12px; border: 2px solid var(--danger); box-shadow: 0 0 30px rgba(239, 68, 68, 0.4); max-width: 100%; height: auto;">
+
+            <br><br><br>
+
+            <a href="login.php" class="btn" style="background: var(--text-muted); color: #0f172a;">
+                ⬅ Réessayer
+            </a>
+
+        </div>
+
+    </body>
+    </html>
+    <?php
+    exit; 
+}
 
     $_SESSION['user_id'] = $user ['id'];
     $_SESSION['user_nom'] = $user ['nom'];
@@ -47,17 +84,21 @@ if ($_SERVER['REQUEST_METHOD'] ==='POST'){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connexion</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Kedebideri:wght@400;500;600;700;800;900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
-    <nav class="nav-links">
-        <a href="index.html">Accueil</a>
-        <a href="register.php">Inscription</a>
-        <a href="login.php">Connexion</a>
+    <nav class="navigation">
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="register.php">Inscription</a></li>
+        <li><a href="login.php">Connexion</a></li>
     </nav>
     </header>
 
-    <h3>Accéder à ton compte</h3>
+    <h1 class="bvn">Accèdes à ton compte</h1>
     <form method="POST">
     <div class="field">
         <label for="email">Email</label>
@@ -68,8 +109,10 @@ if ($_SERVER['REQUEST_METHOD'] ==='POST'){
         <input id="password" type="password" name="password" required>
     </div>
     <div class="actions">
-        <button class="btn" type="submit">Se connecter</button>
+        <button class="bouton" type="submit">Se connecter</button>
+        <divc class="login-link">
         <a class="inline-link" href="register.php">Créer un compte</a>
+        </div>
     </div>
     </form>  
 </body>
