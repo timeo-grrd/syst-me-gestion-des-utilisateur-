@@ -31,9 +31,9 @@ if (!$user || !password_verify($password, $user['password'])){
     </head>
     <body style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh; text-align: center;">
         
-        <div style="max-width: 600px; padding: 20px;">
+        <div>
             
-            <h1 style="color: var(--danger); font-size: 3rem; margin-bottom: 10px; text-shadow: 0 0 20px var(--danger);">
+            <h1>
                 🚫 ACCÈS REFUSÉ
             </h1>
             
@@ -43,11 +43,11 @@ if (!$user || !password_verify($password, $user['password'])){
 
             <img src="https://media1.tenor.com/m/S5EKaLCuwI8AAAAd/fbi-cat.gif" 
                  alt="Troll" 
-                 style="border-radius: 12px; border: 2px solid var(--danger); box-shadow: 0 0 30px rgba(239, 68, 68, 0.4); max-width: 100%; height: auto;">
+                 style>
 
             <br><br><br>
 
-            <a href="login.php" class="btn" style="background: var(--text-muted); color: #0f172a;">
+            <a href="login.php" class="btn" >
                 ⬅ Réessayer
             </a>
 

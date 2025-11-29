@@ -70,10 +70,14 @@ if (!preg_match('/^(?=.*[A-Z])(?=.*\d).{8,}$/', $password)) {
                 <label for="email">Email</label>
                 <input id="email" type="email" name="email" required>
             </div>
-            <div class="field">
-                <label for="adresse">Adresse postale</label>
-                <input id="adresse" type="text" name="adresse" placeholder="N° et rue, Ville" required >
-            </div>
+          <div class="field">
+    <label for="adresse">Adresse postale</label>
+    <input id="adresse" type="text" name="adresse" placeholder="N° et rue, Ville" required autocomplete="off">
+    
+    <ul id="suggestions"></ul>
+        </div>
+
+<script src="adresse.js"></script>
             
             <div class="field">
                 <label for="password">Mot de passe</label>
@@ -99,5 +103,6 @@ if (!preg_match('/^(?=.*[A-Z])(?=.*\d).{8,}$/', $password)) {
 
         </form>
     </main>
+    <script src="C:\laragon\www\php\gest_users_tim\adresse.js"></script>
 </body>
 </html>
