@@ -1,32 +1,30 @@
 # Système de Gestion des Utilisateurs
 
-Petit projet perso en PHP pour gérer une liste d'utilisateurs avec des rôles différents. C'est du PHP procédural pur, sans framework - histoire de bien maitriser les bases avant de compliqué.
+Projet en PHP pour gérer une liste d'utilisateurs avec des rôles différents. C'est du PHP procédural.
 
 ## C'est quoi ce projet ?
 
-L'idée était simple : créer une app où les gens peuvent s'inscrire, se connecter, et où les admins peuvent gérer tout le monde. J'ai voulu mettre en pratique la gestion des sessions, la sécurité (vrai truc important), et comment faire fonctionner une base de données correctement.
+Créer une app où les gens peuvent s'inscrire, se connecter, et où les admins peuvent gérer tout le monde. J'ai voulu mettre en pratique la gestion des sessions, la sécurité, et comment faire fonctionner une base de données correctement.
 
 ## Que peut-on faire ?
 
 ### Côté utilisateur :
 
-- S'inscrire avec un formulaire qui vérification quand même (email unique, mots de passe qui match, et faut que ce soit costaud : 8 caractères min, une majuscule, un chiffre, un caractère spécial)
+- S'inscrire avec un formulaire qui vérification quand même (email unique, mots de pass: 8 caractères min, une majuscule, un chiffre, un caractère spécial)
 - Voir son profil
 - Supprimer son compte si on veut
 
 ### Côté admin :
 
-- Voir tous les utilisateurs d'un coup d'œil
+- Voir tous les utilisateurs
 - Créer des comptes manuellement
-- Modifier les infos d'un utilisateur (nom, email, et surtout le rôle)
+- Modifier les infos d'un utilisateur (nom, email, et le rôle)
 - Supprimer un compte n'importe lequel
-- Y a une petite protection qui empêche un admin de se retirer ses propres droits accidentellement (ça m'a sauvé plusieurs fois)
+- Protection qui empêche un admin de se retirer ses propres droits accidentellement
 
 ## Sécurité
 
-J'ai vraiment pas rigolé là-dessus :
-
-- Les requêtes à la base de données se font toutes avec PDO et des requêtes préparées → zéro injection SQL
+- Les requêtes à la base de données se font toutes avec PDO et des requêtes préparées
 - Les mots de passe sont hachés avec `password_hash()`
 - Les données affichées sont protégées contre les failles XSS avec `htmlspecialchars()`
 
@@ -79,4 +77,4 @@ Par défaut, quand on s'inscrit, on est "user". Pour tester l'admin :
 
 ---
 
-Projet by Timéo Girard
+Projet Timéo Girard
