@@ -1,0 +1,73 @@
+/* menus burger  */
+
+/* Bouton du menu burger */
+.burger-btn {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 1000;
+    gap: 6px;
+}
+
+.burger-line {
+    width: 25px;
+    height: 3px;
+    background-color: var(--text-principal);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+/* Menu latéral (Sidenav) */
+.sidenav {
+    position: fixed;
+    top: 0;
+    left: -300px;
+    width: 300px;
+    height: 100vh;
+    background-color: var(--fond-bloc);
+    padding: 60px 0 20px 0;
+    z-index: 999;
+    transition: left 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidenav.active {
+    left: 0;
+}
+
+.sidenav .close-btn {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: none;
+    border: none;
+    color: var(--text-principal);
+    font-size: 28px;
+    cursor: pointer;
+    padding: 5px;
+    transition: color 0.3s ease;
+}
+
+.sidenav .close-btn:hover {
+    color: var(--danger);
+}
+
+.sidenav a {
+    color: var(--text-secondaire);
+    padding: 15px 25px;
+    text-decoration: none;
+    font-size: 16px;
+    display: block;
+    transition: all 0.3s ease;
+}
+
+.sidenav a:hover {
+    color: var(--text-principal);
+    background-color: rgba(255, 255, 255, 0.05);
+}

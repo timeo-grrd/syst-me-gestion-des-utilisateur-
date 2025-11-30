@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="burger.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -14,6 +15,21 @@
     <title>Document gestion des utilisateurs</title>
   </head>
   <body>
+    <!-- Menu Burger -->
+    <button id="openBtn" class="burger-btn">
+      <span class="burger-line"></span>
+      <span class="burger-line"></span>
+      <span class="burger-line"></span>
+    </button>
+
+    <div id="mySidenav" class="sidenav">
+      <button id="closeBtn" class="close-btn">&times;</button>
+      <a href="index.html">Accueil</a>
+      <a href="register.php">Inscription</a>
+      <a href="login.php">Connexion</a>
+    </div>
+
+    <!-- Navigation principale -->
     <nav>
       <h1 class="bvn">Bienvenue sur mon site !!!</h1>
       <div class="navigation">
@@ -22,5 +38,7 @@
         <li><a href="login.php">Connexion</a></li>
       </div>
     </nav>
+
+    <script src="burger.js"></script>
   </body>
 </html>

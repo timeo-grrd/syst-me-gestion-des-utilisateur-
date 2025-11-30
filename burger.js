@@ -1,7 +1,4 @@
-alert("Le fichier JS est bien chargé !");
-/* =========================================
-   PARTIE 1 : ADRESSE (Sécurisée)
-   ========================================= */
+// adresse 
 const input = document.getElementById("adresse");
 const suggestions = document.getElementById("suggestions");
 
@@ -43,9 +40,7 @@ if (input && suggestions) {
     });
 }
 
-/* =========================================
-   PARTIE 2 : MENU BURGER (Sécurisée)
-   ========================================= */
+// Menus burger 
 var sidenav = document.getElementById("mySidenav");
 var openBtn = document.getElementById("openBtn");
 var closeBtn = document.getElementById("closeBtn");

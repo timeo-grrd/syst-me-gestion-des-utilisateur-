@@ -1,71 +1,82 @@
-Système de Gestion d'Utilisateurs
-Ce dépôt contient le code source de mon projet . Il s'agit d'une application de gestion de membres réalisée en PHP procédural, sans utiliser de framework ni de Programmation Orientée Objet (POO).
+# Système de Gestion des Utilisateurs
 
-L'objectif de ce travail était de mettre en pratique les fondamentaux du langage PHP : la gestion des sessions, la sécurité des formulaires et les interactions avec une base de données MySQL via PDO.
+Petit projet perso en PHP pour gérer une liste d'utilisateurs avec des rôles différents. C'est du PHP procédural pur, sans framework - histoire de bien maitriser les bases avant de compliqué.
 
-Fonctionnalités du projet
-Le site est divisé en deux parties selon le rôle de l'utilisateur :
+## C'est quoi ce projet ?
 
-1. Partie Utilisateur (Publique)
-   Inscription : Le formulaire vérifie que l'email est unique, que les mots de passe correspondent et qu'ils respectent une complexité minimale le regex (8 caractères, majuscule, chiffre, caractère spécial).
-   Un utilisateur peut consulter ses informations et supprimer son compte définitivement.
+L'idée était simple : créer une app où les gens peuvent s'inscrire, se connecter, et où les admins peuvent gérer tout le monde. J'ai voulu mettre en pratique la gestion des sessions, la sécurité (vrai truc important), et comment faire fonctionner une base de données correctement.
 
-2. Partie Administrateur (Privée)
-   Accessible uniquement aux utilisateurs ayant le rôle "Admin".
+## Que peut-on faire ?
 
-Tableau de bord : Vue d'ensemble de tous les utilisateurs inscrits.
-Ajout de membre : Possibilité de créer un compte manuellement.
-Modification : Possibilité de modifier le nom, l'email et surtout le rôle (passer un membre en admin et inversement).
-Suppression : Suppression du compte n'importe quel compte utilisateur.
-Sécurité : Une protection empêche l'administrateur de se retirer ses propres droits accidentellement.
+### Côté utilisateur :
 
-Base de données : MySQL.
+- S'inscrire avec un formulaire qui vérification quand même (email unique, mots de passe qui match, et faut que ce soit costaud : 8 caractères min, une majuscule, un chiffre, un caractère spécial)
+- Voir son profil
+- Supprimer son compte si on veut
 
-Sécurité BDD : Utilisation exclusive de PDO et des requêtes préparées (Prepared Statements) pour empêcher les injections SQL.
+### Côté admin :
 
-Sécurité des données : Les mots de passe sont hachés avec password_hash() et les affichages sont protégés contre les failles XSS avec htmlspecialchars().
+- Voir tous les utilisateurs d'un coup d'œil
+- Créer des comptes manuellement
+- Modifier les infos d'un utilisateur (nom, email, et surtout le rôle)
+- Supprimer un compte n'importe lequel
+- Y a une petite protection qui empêche un admin de se retirer ses propres droits accidentellement (ça m'a sauvé plusieurs fois)
 
-Installation locale
-Pour tester le projet sur votre machine, voici les étapes à suivre :
+## Sécurité
 
-1. Récupération des fichiers Clonez ce dépôt ou téléchargez les fichiers dans le dossier de votre serveur local (ex: www pour Laragon/Wamp ou htdocs pour XAMPP).
+J'ai vraiment pas rigolé là-dessus :
 
-2. Création de la Base de Données Ouvrez votre gestionnaire SQL (phpMyAdmin ou autre) et exécutez le script SQL suivant pour créer la base et les tables nécessaires :
+- Les requêtes à la base de données se font toutes avec PDO et des requêtes préparées → zéro injection SQL
+- Les mots de passe sont hachés avec `password_hash()`
+- Les données affichées sont protégées contre les failles XSS avec `htmlspecialchars()`
 
-SQL
+## Installation
 
+### 1. Télécharger les fichiers
+
+Clone le repo ou télécharge les fichiers dans ton dossier serveur local (pour Laragon c'est le dossier `www`, pour XAMPP c'est `htdocs`).
+
+### 2. Créer la base de données
+
+Ouvre phpMyAdmin et exécute ce script SQL :
+
+```sql
 CREATE DATABASE gestion_users;
 USE gestion_users;
 
--- Table des rôles (Admin / User)
 CREATE TABLE roles (
-id INT AUTO_INCREMENT PRIMARY KEY,
-name VARCHAR(50) NOT NULL
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50) NOT NULL
 );
 
 INSERT INTO roles (name) VALUES ('user'), ('admin');
 
--- Table des utilisateurs
 CREATE TABLE users (
-id INT AUTO_INCREMENT PRIMARY KEY,
-nom VARCHAR(255) NOT NULL,
-email VARCHAR(255) NOT NULL UNIQUE,
-adresse VARCHAR(255) NOT NULL,
-password VARCHAR(255) NOT NULL,
-role_id INT DEFAULT 1,
-created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-CONSTRAINT fk_users_roles FOREIGN KEY (role_id) REFERENCES roles(id)
-); 3. Configuration Vérifiez le fichier fonctions.php à la racine. Il contient la fonction de connexion à la base de données. Par défaut, elle est configurée pour un environnement local standard (Utilisateur : root, Mot de passe : vide). Modifiez ces valeurs si nécessaire.
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nom VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    adresse VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    role_id INT DEFAULT 1,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk_users_roles FOREIGN KEY (role_id) REFERENCES roles(id)
+);
+```
 
-Accéder à l'interface Admin
-Lors d'une inscription classique, l'utilisateur reçoit par défaut le rôle "User". Pour tester les fonctionnalités administrateur :
+### 3. Configurer la connexion
 
-Inscrivez-vous sur le site via le formulaire.
+Vérifie le fichier `fonctions.php` - c'est là qu'est la connexion à la base. Par défaut c'est configuré pour un environnement local classique (user: `root`, pass: vide). À adapter si c'est différent chez toi.
 
-Allez dans votre base de données (table users).
+## Pour tester l'interface admin
 
-Modifiez la colonne role_id de votre utilisateur et mettez la valeur 2 (au lieu de 1).
+Par défaut, quand on s'inscrit, on est "user". Pour tester l'admin :
 
-Déconnectez-vous et reconnectez-vous sur le site : le menu administrateur sera désormais visible.
+1. Inscris-toi sur le site
+2. Va dans phpMyAdmin, table `users`
+3. Change la colonne `role_id` de ton compte à 2
+4. Déconnecte-toi et reconnecte-toi
+5. Et voilà, tu as accès à l'interface admin
 
-Projet réalisé par Timéo Girard
+---
+
+Projet by Timéo Girard

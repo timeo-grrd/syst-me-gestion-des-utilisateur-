@@ -22,9 +22,9 @@ $users = getAllUsers($pdo);
     
 </head>
 <body>
-    <nav>
-        <a href="tableau.php">Retour au profil</a>
-        <a href="logout.php">Déconnexion</a>
+    <nav class="bvn">
+        <li><a href="tableau.php">Retour sur le tableau principal</a></li>
+       <li><a href="logout.php">Déconnexion</a></li>
     </nav>
 <h1>Gestion des utilisateurs</h1>
 <div style="margin-bottom: 20px;">
