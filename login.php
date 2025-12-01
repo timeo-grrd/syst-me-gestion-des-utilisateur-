@@ -85,11 +85,27 @@ if (!$user || !password_verify($password, $user['password'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connexion</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="burger.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Kedebideri:wght@400;500;600;700;800;900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Menu Burger -->
+    <button id="openBtn" class="burger-btn">
+      <span class="burger-line"></span>
+      <span class="burger-line"></span>
+      <span class="burger-line"></span>
+    </button>
+
+    <div id="mySidenav" class="sidenav">
+      <button id="closeBtn" class="close-btn">&times;</button>
+      <a href="index.html">Accueil</a>
+      <a href="register.php">Inscription</a>
+      <a href="login.php">Connexion</a>
+    </div>
+
+    <!-- Navigation principale -->
     <header>
     <nav class="navigation">
         <li><a href="index.html">Accueil</a></li>
@@ -115,5 +131,6 @@ if (!$user || !password_verify($password, $user['password'])){
         </div>
     </div>
     </form>  
+    <script src="burger.js"></script>
 </body>
 </html>

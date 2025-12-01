@@ -44,6 +44,10 @@ nav li  a {
 }
 }
 
+header {
+    display: block;
+}
+
 .field {
     display: flex;
     flex-direction: column;
@@ -131,4 +135,88 @@ nav li  a {
     border: 1px solid #ccc;
     display: none;
     background: black;
+}
+
+/* ===== RESPONSIVE ===== */
+
+/* Mobile */
+@media (max-width: 768px) {
+    .bvn {
+        font-size: 2rem;
+        margin-top: 50px;
+    }
+
+    .navigation {
+        display: none;
+    }
+
+    header {
+        padding: 20px;
+    }
+
+    nav {
+        padding: 20px;
+    }
+
+    .field {
+        max-width: 100%;
+        padding: 0 15px;
+    }
+
+    .field input {
+        font-size: 16px;
+        padding: 10px 12px;
+    }
+
+    .login-link {
+        max-width: 100%;
+        padding: 0 15px;
+        font-size: 16px;
+        margin-top: 20px;
+    }
+
+    .actions {
+        max-width: 100%;
+        padding: 0 15px;
+        flex-direction: column;
+    }
+
+    .bouton {
+        width: 100%;
+        font-size: 0.95rem;
+        padding: 12px 20px;
+    }
+}
+
+/* Petit mobile */
+@media (max-width: 480px) {
+    .bvn {
+        font-size: 1.5rem;
+        margin-top: 60px;
+    }
+
+    .field {
+        padding: 0 10px;
+        gap: 6px;
+    }
+
+    .field label {
+        font-size: 14px;
+    }
+
+    .field input {
+        font-size: 16px;
+        padding: 8px 10px;
+    }
+
+    .login-link {
+        padding: 0 10px;
+        font-size: 14px;
+    }
+
+    .bouton {
+        width: 100%;
+        font-size: 0.9rem;
+        padding: 10px 15px;
+    }
 }

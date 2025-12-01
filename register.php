@@ -53,11 +53,26 @@ if (!preg_match('/^(?=.*[A-Z])(?=.*\d).{8,}$/', $password)) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inscription site </title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="burger.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Kedebideri:wght@400;500;600;700;800;900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Menu Burger -->
+    <button id="openBtn" class="burger-btn">
+      <span class="burger-line"></span>
+      <span class="burger-line"></span>
+      <span class="burger-line"></span>
+    </button>
+
+    <div id="mySidenav" class="sidenav">
+      <button id="closeBtn" class="close-btn">&times;</button>
+      <a href="index.html">Accueil</a>
+      <a href="register.php">Inscription</a>
+      <a href="login.php">Connexion</a>
+    </div>
+
     <main>
         <form method="POST">
             <h1 class="bvn">Créer un compte</h1>
@@ -103,6 +118,7 @@ if (!preg_match('/^(?=.*[A-Z])(?=.*\d).{8,}$/', $password)) {
 
         </form>
     </main>
-    <script src="C:\laragon\www\php\gest_users_tim\adresse.js"></script>
+    <script src="adresse.js"></script>
+    <script src="burger.js"></script>
 </body>
 </html>
